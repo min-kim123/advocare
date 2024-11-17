@@ -1,0 +1,29 @@
+footer {
+  background-color: #008080;
+}
+
+.footer-block, .footer-block a {
+  color: #cdd5a6;
+}
+
+.footer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-row-gap: 20px;
+  margin-bottom: 1rem;
+}
+
+.footer-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 70%;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 10px;
+  text-align: left;
+}

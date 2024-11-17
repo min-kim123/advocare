@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;  /* This ensures white background */
+  --foreground: #171717;
+}
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Global styles */
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #287d78;
+  line-height: 1.6;
+}
+
+
+
+/* Header styles */
+header {
+  background-color: #ffffff;
+  padding: 0rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header a h1 {
+  color: #287d78;
+  text-decoration: none; /* Removes underline */
+  cursor: pointer;
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+header nav ul li a {
+  color: #287d78;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+  color: #1d7d7a;
+}
+
+header a {
+  margin-right: 2rem;
+}
+
+/* Section layout */
+#start-screen-container {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* Changed from center */
+  justify-content: flex-start;  /* Changed from center */
+  text-align: left;  /* Changed from center */
+  padding-left: 2rem;  /* Add left padding */
+}
+
+/* Hook text styles */
+#start-screen-txt h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#start-screen-txt p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+
+}
+
+/* Button group container */
+/* Update the button group */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;  /* Changed from center */
+  margin-top: 1rem;
+}
+
+/* Button styles */
+a.cta, .cta, .waitlist-button {
+  padding: 12px 24px; /* Consistent padding for both buttons */
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 150px; /* Ensures buttons have the same width */
+  max-width: 200px; /* Prevents buttons from being too wide */
+}
+
+/* CTA button (Try Demo) */
+.cta {
+  background-color: #28a29e;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background-color: #1d7d7a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Waitlist button */
+.waitlist-button {
+  background-color: white;
+  color: #28a29e;
+  border: 2px solid #28a29e;
+  transition: all 0.3s ease;
+}
+
+.waitlist-button:hover {
+  background-color: #28a29e;
+  color: white;
+}
+
+/* UploadInfo Page */
+#customer-info-form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 90vh;
+  background: linear-gradient(to bottom, #e0f7f4, #ffffff);
+}
+
+form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  width: 100%;
+}
+
+.customer-info-input-box {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #287d78;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input[type="file"] {
+  padding: 5px;
+}
+
+button.cta {
+  width: 100%;
+  background-color: #28a29e;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button.cta:hover {
+  background-color: #1d7d7a;
+}
+
+/* Analysis result box */
+#analysis-result-box {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#analysis-result-box h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#analysis-result-box p {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#analysis-result-box button {
+  background-color: #28a29e;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#analysis-result-box button:hover {
+  background-color: #1d7d7a;
+}
