@@ -8,7 +8,7 @@ function Navbar() {
       <nav className="flex w-full flex-row justify-end items-center">
         {/* <a href="/" className="dark-green-text">Home</a>
         <a href="/support" className="dark-green-text">Support</a> */}
-        <a href="/about-us" >About Us</a>
+        <a href="/about" >About Us</a>
       </nav>
     </header>
   );
