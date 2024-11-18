@@ -28,8 +28,8 @@ const CaseDashboard = () => {
       required: true,
     },
     {
-      title: "Authorize Goodbill",
-      description: "You authorized Goodbill to speak with the hospital.",
+      title: "Authorize Advocare",
+      description: "You authorized Advocare to speak with the hospital.",
       completed: true,
       required: true,
     },
@@ -48,7 +48,7 @@ const CaseDashboard = () => {
     {
       title: "Check if you qualify for a discount from the hospital",
       description:
-        "Your hospital may be required to cover some or all of your bill, based on your income. If you qualify, you may not need Goodbill.",
+        "Your hospital may be required to cover some or all of your bill, based on your income. If you qualify, you may not need Advocare.",
       completed: false,
       required: false,
     },

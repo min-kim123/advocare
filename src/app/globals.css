@@ -134,7 +134,7 @@ a.cta, .cta, .waitlist-button {
 .waitlist-button {
   background-color: white;
   color: #28a29e;
-  border: 2px solid #28a29e;
+  /* border: 2px solid #28a29e; */
   transition: all 0.3s ease;
 }
 
