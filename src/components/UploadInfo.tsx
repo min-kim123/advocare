@@ -70,7 +70,7 @@ export default function UploadInfo() {
   };
 
   return (
-    <div className="pt-48 flex flex-col items-center min-h-screen bg-gradient-to-b from-teal-50 to-white py-8">
+    <div className="pt-32 flex flex-col items-center min-h-screen bg-gradient-to-b from-teal-50 to-white py-8">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Tell us about your case!
       </h1>

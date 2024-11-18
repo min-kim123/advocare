@@ -6,7 +6,7 @@ function GetStarted() {
   const router = useRouter();  // Use Next.js router instead of navigate
 
   return (
-    <div id="start-container" className="pt-80 pl-8 md:pl-16">
+    <div id="start-container" className="pt-52 pl-8 md:pl-16">
       <div id="start-screen-txt">
         <h1 className="text-5xl font-bold mb-4 text-black text-left">
           Stop overpaying<br />
