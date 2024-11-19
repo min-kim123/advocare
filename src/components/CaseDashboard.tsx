@@ -2,6 +2,7 @@
 import React from "react";
 import { Dot, CheckCircle, ChevronRight, FileText, Mail } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Task {
   title: string;
@@ -44,13 +45,6 @@ const CaseDashboard = () => {
       description: "Upload your explanation of benefits document.",
       completed: false,
       required: true,
-    },
-    {
-      title: "Check if you qualify for a discount from the hospital",
-      description:
-        "Your hospital may be required to cover some or all of your bill, based on your income. If you qualify, you may not need Advocare.",
-      completed: false,
-      required: false,
     },
   ];
 
@@ -147,12 +141,22 @@ const CaseDashboard = () => {
       <div className="bg-gray-50 rounded-lg p-6">
         <h3 className="text-lg font-medium mb-4">Need help?</h3>
         <div className="flex items-center mb-4">
-          <div className="w-10 h-10 bg-gray-200 rounded-full mr-3" />
-          <div>
+          <div className="relative w-12 h-12 rounded-full overflow-hidden">
+            <Image
+              src="/profile_pictures/iodolka.jpg" 
+              alt="Io Dolka"
+              width={80}
+              height={80}
+              className="object-cover"
+            />
+          </div>
+          <div className="ml-3">
             <Link href="/email" className="text-blue-600 hover:underline">
-              Email Steve <ChevronRight className="inline w-4 h-4" />
+              Email Io Dolka <ChevronRight className="inline w-4 h-4" />
             </Link>
-            <div className="text-sm text-gray-500">Your Professional Advocate</div>
+            <div className="text-sm text-gray-500">
+              Your Professional Advocate
+            </div>
           </div>
         </div>
         <div className="flex items-center">

@@ -50,7 +50,7 @@ function Results() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-teal-50 to-white py-8">
         <p className="text-xl mb-4">No analysis results available.</p>
         <button
-          onClick={() => router.push("/")} // Replace navigate with router.push
+          onClick={() => router.push("/")}
           className="bg-teal-500 text-white p-3 rounded text-lg"
         >
           Return to Upload
@@ -58,10 +58,9 @@ function Results() {
       </div>
     );
   }
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white py-8 mt-20">
-
-
+    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white py-8 ">
       <div className="container mx-auto px-4">
         <div className="flex flex-row gap-6">
           {/* Left Column - Analysis Results */}
@@ -170,12 +169,13 @@ function Results() {
             <div className="bg-white p-6 rounded shadow-md h-full">
               {/* Add your content for the right column here */}
               <h2 className="text-2xl font-bold mb-4">Professional advocates best suited for your case:</h2>
-              {/* Add more content as needed */}
+
+              <AdvocateCards/>
             </div>
           </div>
         </div>
       </div>
-      <AdvocateCards/>
+      
     </div>
   );
 }

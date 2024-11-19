@@ -1,78 +1,132 @@
-import React from 'react';
-import { Card, CardContent } from '@/src/components/ui/card';
-import { Star } from 'lucide-react';
+'use client'
+import React, { useState } from 'react';
+import { Card } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const AdvocateCards = () => {
-  // Example data structure - replace with your actual data from Supabase
+  const [selectedAdvocate, setSelectedAdvocate] = useState(null);
+
+  const router = useRouter();  
   const advocates = [
     {
       id: 1,
-      firstName: "Jane",
-      lastName: "Smith",
-      credentials: "RN",
-      previousExperience: "10 years of experience in pediatric nursing at Mayo Clinic",
-      profilePicture: "/api/placeholder/150/150", // Using placeholder for demo
-      rating: 4.5
+      name: "Io Dolka",
+      title: "RN",
+      rating: 4.5,
+      image: "/profile_pictures/iodolka.jpg", 
+      experience: "10 years of experience in pediatric nursing at Mayo Clinic",
+      details: [
+        "Specializes in medical bill review and negotiation",
+        "Successfully reduced bills by an average of 40% for clients",
+        "Expert in identifying billing errors and overcharges",
+        "Deep understanding of insurance claims and appeals processes"
+      ],
+      expertise: ["Medical Bill Review", "Insurance Appeals", "Patient Advocacy"]
     },
     {
       id: 2,
-      firstName: "John",
-      lastName: "Doe",
-      credentials: "MSN, RN",
-      previousExperience: "Lead nurse educator at Cleveland Clinic for 5 years",
-      profilePicture: "/api/placeholder/150/150", // Using placeholder for demo
-      rating: 5
+      name: "Cindy Johnson",
+      title: "MSN",
+      rating: 5.0,
+      image: "/profile_pictures/cindyjohnson.jpg", 
+      experience: "Lead nurse educator at Cleveland Clinic for 5 years",
+      details: [
+        "Specialized in complex medical billing disputes",
+        "Former hospital billing department supervisor",
+        "Expert in healthcare pricing transparency",
+        "Strong track record in negotiating with insurance companies"
+      ],
+      expertise: ["Billing Disputes", "Insurance Negotiation", "Healthcare Policy"]
     }
   ];
 
-  const RatingStars = ({ rating }) => {
-    return (
-      <div className="flex items-center gap-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star
-            key={star}
-            size={16}
-            className={`${
-              star <= rating 
-                ? 'fill-yellow-400 text-yellow-400' 
-                : star - 0.5 <= rating 
-                  ? 'fill-yellow-400 text-yellow-400 opacity-50' 
-                  : 'text-gray-300'
-            }`}
-          />
-        ))}
-        <span className="text-sm text-gray-600 ml-1">{rating.toFixed(1)}</span>
-      </div>
-    );
+  const renderStars = (rating) => {
+    return Array(5).fill(0).map((_, i) => (
+      <span key={i} className={`text-yellow-400 ${i < Math.floor(rating) ? 'opacity-100' : 'opacity-30'}`}>
+        ★
+      </span>
+    ));
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {advocates.map((advocate) => (
-        <Card key={advocate.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-          <CardContent className="p-6 flex flex-col items-center">
-            <div className="mb-4 w-24 h-24 rounded-full overflow-hidden">
-              <img
-                src={advocate.profilePicture}
-                alt={`${advocate.firstName} ${advocate.lastName}`}
-                className="w-full h-full object-cover"
-              />
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {advocates.map((advocate) => (
+          <Card 
+            key={advocate.id}
+            className={`cursor-pointer transition-all hover:shadow-lg ${
+              selectedAdvocate?.id === advocate.id ? 'ring-2 ring-teal-500' : ''
+            }`}
+            onClick={() => setSelectedAdvocate(advocate)}
+          >
+            <div className="p-6">
+              <div className="flex items-center space-x-4">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
+                  <Image
+                    src={advocate.image}
+                    alt={`${advocate.name}'s profile picture`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 64px) 100vw"
+                    priority
+                  />
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold">
+                    {advocate.name} <span className="text-gray-500">{advocate.title}</span>
+                  </h3>
+                  <div className="flex items-center">
+                    {renderStars(advocate.rating)}
+                    <span className="ml-2 text-gray-600">{advocate.rating}</span>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-1">{advocate.experience}</p>
+                </div>
+              </div>
             </div>
-            <h3 className="text-xl font-semibold mb-1 text-center">
-              {advocate.firstName} {advocate.lastName}
-              {advocate.credentials && (
-                <span className="text-sm font-normal text-gray-600 ml-2">
-                  {advocate.credentials}
-                </span>
-              )}
-            </h3>
-            <div className="mb-2">
-              <RatingStars rating={advocate.rating} />
+          </Card>
+        ))}
+      </div>
+
+      {selectedAdvocate && (
+        <Card className="mt-6">
+          <div className="p-6">
+            <h3 className="text-xl font-semibold mb-4">About {selectedAdvocate.name}</h3>
+            
+            <div className="mb-4">
+              <h4 className="font-medium text-gray-700 mb-2">Areas of Expertise:</h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedAdvocate.expertise.map((item, index) => (
+                  <span key={index} className="bg-teal-50 text-teal-700 px-3 py-1 rounded-full text-sm">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-            <p className="text-gray-600 text-sm text-center">{advocate.previousExperience}</p>
-          </CardContent>
+
+            <div className="mb-6">
+              <h4 className="font-medium text-gray-700 mb-2">Experience & Qualifications:</h4>
+              <ul className="list-disc pl-5 space-y-2">
+                {selectedAdvocate.details.map((detail, index) => (
+                  <li key={index} className="text-gray-600">{detail}</li>
+                ))}
+              </ul>
+            </div>
+
+            <Button 
+    className="w-full md:w-auto bg-teal-500 hover:bg-teal-600 text-white"
+    onClick={() => {
+      console.log(`Working with ${selectedAdvocate.name}`);
+      router.push('/dashboard');
+    }}
+  >
+              Work with {selectedAdvocate.name}
+            </Button>
+          </div>
         </Card>
-      ))}
+      )}
     </div>
   );
 };

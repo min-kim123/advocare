@@ -16,7 +16,6 @@ export default function UploadInfo() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();  // Replace useNavigate
   const { setAnalysisResult } = useAnalysis();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -24,14 +23,19 @@ export default function UploadInfo() {
     const fileInput = document.getElementById("bill-input") as HTMLInputElement;
     const files = fileInput.files;
 
-    if (!files) return;
+    if (!files) {
+      setError("Please select files to upload.");
+      return;
+    }
 
     if (files.length > 10) {
-      alert("You can only upload up to 10 files.");
+      setError("You can only upload up to 10 files.");
       return;
     }
 
     Array.from(files).forEach((file) => formData.append("files", file));
+    
+    // Match the backend parameter names exactly
     formData.append(
       "firstName", 
       (document.getElementById("first-name") as HTMLInputElement).value
@@ -49,25 +53,26 @@ export default function UploadInfo() {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:3001/api/analyze", {
+      const response = await fetch("http://localhost:8000/api/analyze", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to analyze the uploaded bill.");
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Failed to analyze the uploaded bill.");
       }
 
       const result = await response.json();
       setAnalysisResult(result);
-      router.push("/results");  // Replace navigate
+      router.push("/results");
     } catch (error) {
       console.error("Error during upload:", error);
-      setError("Something went wrong. Please try again.");
+      setError(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
-  };
+};
 
   return (
     <div className="pt-32 flex flex-col items-center min-h-screen bg-gradient-to-b from-teal-50 to-white py-8">
@@ -132,7 +137,7 @@ export default function UploadInfo() {
           {loading ? (
             <div className="flex items-center justify-center gap-2">
               <span>Analyzing</span>
-              <BeatLoader color="#ffffff" size={8} />
+              
             </div>
           ) : (
             "Submit"
