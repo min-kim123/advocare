@@ -1,0 +1,16 @@
+#form-container, #loading-gif {
+  transition: 0.7s ease-in-out;
+}
+
+#form-container.form-hide {
+  transform: translateY(100px);
+}
+
+#loading-anim {
+  pointer-events: none;
+}
+
+.form-hide {
+  opacity: 0;
+  pointer-events: none;
+}
