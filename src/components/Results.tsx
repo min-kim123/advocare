@@ -17,6 +17,7 @@ interface Procedure {
 
 interface AnalysisResult {
   analysis: {
+    summary: string;
     recommendations: string;
     details: {
       ucr_validation: {
@@ -66,6 +67,13 @@ function Results() {
           <div className="w-2/5">
             <div className="bg-white p-6 rounded shadow-md">
               <h2 className="text-2xl font-bold mb-4">Analysis Result</h2>
+
+              {/* Summary Section */}
+              <section className="mb-6">
+                <h3 className="text-xl font-semibold mb-2">Summary</h3>
+                {analysisResult.analysis.summary &&
+                  renderMiniBox("Overview", analysisResult.analysis.summary)}
+              </section>
 
               {/* UCR Validation Section */}
               <section className="mb-6">
