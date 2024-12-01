@@ -1,35 +1,3 @@
-// // WaitlistForm.js
-// import React, { useState } from 'react';
-
-// function WaitlistForm() {
-//   const [email, setEmail] = useState('');
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Handle form submission (e.g., send email to backend)
-//     console.log('Submitted email:', email);
-//   };
-
-//   return (
-//     <div>
-//       <h2 className="text-3xl m-7">Join our Waitlist</h2>
-//       <form onSubmit={handleSubmit} className="flex flex-col items-center">
-//         <input
-//           className="w-[50vw] mb-7 border-solid border-2 p-[0.5rem]"
-//           type="email"
-//           value={email}
-//           onChange={(e) => setEmail(e.target.value)}
-//           placeholder="Enter your email"
-//           required
-//         />
-//         <button type="submit" className="cta black-bg white-text">Submit</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default WaitlistForm;
-
 // WaitlistForm.js
 'use client'
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -39,7 +7,7 @@ import React, { useState } from "react";
 function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     console.log("Starting submission...");
@@ -66,9 +34,13 @@ function WaitlistForm() {
 
       setEmail("");
       alert("Thanks for joining!");
-    } catch (error) {
-      console.error("Full error object:", error);
-      setError(error.message || "Something went wrong");
+    } catch (err: unknown) {
+      console.error("Full error object:", err);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong");
+      }
     }
   };
   return (
